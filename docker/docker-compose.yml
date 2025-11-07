@@ -1,0 +1,16 @@
+services:
+  pg_ds:
+    build:
+      context: ./postgres
+    container_name: ds_postgres
+    environment:
+      - "POSTGRES_DB=${PG_DATABASE_NAME}"
+      - "POSTGRES_USER=${PG_USER}"
+      - "POSTGRES_PASSWORD=${PG_PASSWORD}"
+    ports:
+      - "${PG_PORT}:5432"
+    volumes:
+      - ds_volume:/var/lib/postgresql/data
+
+volumes:
+  ds_volume:
