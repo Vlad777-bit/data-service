@@ -29,9 +29,16 @@ public class StudentController implements StudentDataApi {
         return ResponseEntity.status(200).body(response);
     }
 
-  /*@Override
+  @Override
   public ResponseEntity<StudentDataResponse> getStudentDataByIdFromData(Long id) {
+      Student student = studentRepository.findById(id)
+              .orElseThrow(() -> new RuntimeException("Student not found with id: " + id));
 
-    return ResponseEntity.status(200).body(response);
-  }*/
+      StudentDataResponse response = new StudentDataResponse();
+      response.setId(student.getId());
+      response.setFullName(student.getName());
+      response.setPassport(student.getPassport());
+
+      return ResponseEntity.ok(response);
+  }
 }
